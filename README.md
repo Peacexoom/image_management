@@ -9,6 +9,7 @@ The **Image Upload and Listing Application** is a Django web application that al
 - **Image Upload**: Users can upload images which are then stored in an AWS S3 bucket.
 - **Image Listing**: A dedicated page displays all uploaded images with links to download each image.
 - **Feedback Mechanism**: Users receive feedback upon successful uploads or any errors encountered.
+- **Encypted Images**: Users can store encrypted images and filer those images.
 
 ## Technologies Used
 
