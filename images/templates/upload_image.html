@@ -1,16 +1,79 @@
-<h2>Upload an Image</h2>
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    <input type="file" name="image" required>
-    <button type="submit">Upload</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload an Image</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
 
-{% if success %}
-<p>Image uploaded successfully!</p>
-{% elif error %}
-<p>{{ error }}</p>
-{% endif %}
+        h2 {
+            color: #333;
+        }
 
-<a href="{% url 'list_images' %}" style="display:inline-block; padding: 10px 15px; margin-top: 10px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;">
-    View Uploaded Images
-</a>
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="file"] {
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        a {
+            display: inline-block;
+            padding: 10px 15px;
+            margin-top: 10px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h2>Upload an Image</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="image" required>
+        <div>
+        <label>
+            <input type="checkbox" name="encrypt" value="true"> Encrypt images while uploading.
+        </label>
+    </div>
+        <button type="submit">Upload</button>
+    </form>
+
+    {% if success %}
+    <p>Image uploaded successfully!</p>
+    {% elif error %}
+    <p>{{ error }}</p>
+    {% endif %}
+
+    <a href="{% url 'list_images' %}">View Uploaded Images</a>
+</body>
+</html>

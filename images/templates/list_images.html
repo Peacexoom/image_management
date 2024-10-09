@@ -1,5 +1,12 @@
 <h2>Image List</h2>
 
+<form method="GET" style="margin-bottom: 20px;">
+    <label>
+        <input type="checkbox" name="show_encrypted" value="true" {% if show_encrypted %}checked{% endif %}> Show only encrypted images
+    </label>
+    <button type="submit" style="padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 5px;">Filter</button>
+</form>
+
 <div>
     {% if images %}
         {% for image in images %}
