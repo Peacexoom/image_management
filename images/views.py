@@ -28,11 +28,18 @@ def list_images(request):
                       aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY,
                       region_name=settings.AWS_S3_REGION_NAME)
 
-    # Get the list of images from the S3 bucket
+    images = []  # Initialize images variable
     try:
+        # Get the list of images from the S3 bucket
         response = s3.list_objects_v2(Bucket=settings.AWS_STORAGE_BUCKET_NAME)
         images = response.get('Contents', []) if 'Contents' in response else []
     except NoCredentialsError:
-        images = []
+        # Log the error or handle it appropriately
+        print("Credentials not available.")
 
-    return render(request, 'list_images.html', {'images': images})
+    context = {
+        'images': images,
+        'AWS_S3_REGION_NAME': settings.AWS_S3_REGION_NAME,
+        'AWS_STORAGE_BUCKET_NAME': settings.AWS_STORAGE_BUCKET_NAME,
+    }
+    return render(request, 'list_images.html', context)

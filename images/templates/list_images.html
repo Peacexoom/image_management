@@ -1,30 +1,20 @@
 <h2>Image List</h2>
 
-<ul>
-    {% if images %}
-        {% for image in images %}
-            <li>
-                <a href="https://{{ settings.AWS_STORAGE_BUCKET_NAME }}.s3.{{ settings.AWS_S3_REGION_NAME }}.amazonaws.com/{{ image.Key }}" target="_blank">
-                    {{ image.Key }}
-                </a>
-            </li>
-        {% endfor %}
-    {% else %}
-        <p>No images found.</p>
-    {% endif %}
-</ul>
-
-{% comment %} <h2>Image List</h2>
-
 <div>
     {% if images %}
         {% for image in images %}
             <div style="margin-bottom: 20px;">
                 <p>{{ image.Key }}</p>
-                <img src="https://{{ settings.AWS_STORAGE_BUCKET_NAME }}.s3.{{ settings.AWS_S3_REGION_NAME }}.amazonaws.com/{{ image.Key }}" alt="{{ image.Key }}" width="300">
+                <img src="https://{{ AWS_STORAGE_BUCKET_NAME }}.s3.{{ AWS_S3_REGION_NAME }}.amazonaws.com/{{ image.Key }}" alt="{{ image.Key }}" width="300">
+
+                <a href="https://{{ AWS_STORAGE_BUCKET_NAME }}.s3.{{ AWS_S3_REGION_NAME }}.amazonaws.com/{{ image.Key }}" 
+                download="{{ image.Key }}" 
+                style="display:inline-block; padding: 10px 15px; margin-top: 10px; background-color: #28a745; color: white; text-decoration: none; border-radius: 5px;">
+                 Download
+             </a>
             </div>
         {% endfor %}
     {% else %}
         <p>No images found.</p>
     {% endif %}
-</div> {% endcomment %}
+</div>
